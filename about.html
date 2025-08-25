@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark"> <head>
+<html lang="en" data-theme="dark">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hisab Pro</title>
+    <title>About - Hisab Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -10,14 +11,14 @@
         <a href="index.html" class="logo">Hisab Pro</a>
         <nav class="nav-menu" id="nav-menu">
             <ul class="nav-links">
-                <li><a href="index.html" data-key="nav_home" class="active">Home</a></li>
+                <li><a href="index.html" data-key="nav_home">Home</a></li>
                 <li><a href="features.html" data-key="nav_features">Features</a></li>
-                <li><a href="about.html" data-key="nav_about">About</a></li>
+                <li><a href="about.html" data-key="nav_about" class="active">About</a></li>
                 <li><a href="contact.html" data-key="nav_contact">Contact</a></li>
             </ul>
         </nav>
         <div class="nav-right">
-            <div class="language-switcher">
+             <div class="language-switcher">
                 <select id="language-select">
                     <option value="en">English</option>
                     <option value="hi">हिन्दी</option>
@@ -42,19 +43,21 @@
         </div>
     </header>
 
-    <main class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title animate-on-scroll" data-key="hero_title">Your Accounts Manager</h1>
-            <p class="hero-subtitle animate-on-scroll" data-key="hero_subtitle">
-                Hisab Pro is the easiest and best way to manage all your transactions. Now keep your accounts at your fingertips.
-            </p>
-        </div>
-        <div class="download-buttons animate-on-scroll">
-            <a href="https://github.com/ibrahimboy1/apk/releases/download/v1.0.0/hisab.pro.apk" class="btn btn-primary" data-key="download_android">Download for Android</a>
-            <a href="https://github.com/ibrahimboy1/apk/releases/download/v1.0.0/hisab.pro.apk" class="btn btn-secondary" data-key="all_downloads">All Downloads</a>
-        </div>
-        <div class="code-preview animate-on-scroll">
-            <img src="images/sa.jpg" alt="Hisab Pro App Preview">
+    <main class="page-container">
+        <h1 class="page-title animate-on-scroll" data-key="about_title">Our Story</h1>
+        <div class="page-content">
+            <div class="animate-on-scroll">
+                <h2 data-key="about_h2_1">The Search for a Better Solution</h2>
+                <p data-key="about_p1">Hisab Pro was created with the idea that accounting should be simple, not complicated. We saw small business owners and individuals still relying on pen and paper, which is prone to errors and time-consuming.</p>
+            </div>
+            <div class="animate-on-scroll">
+                <h2 data-key="about_h2_2">Technology That Helps</h2>
+                <p data-key="about_p2">This isn't just an app; it's a modern solution. We used Android Architecture Components for a fast and reliable experience. Room Database provides an excellent offline mode, and Firebase keeps your data safe and synced.</p>
+            </div>
+             <div class="animate-on-scroll">
+                <h2 data-key="about_h2_3">About the Creator</h2>
+                <p data-key="about_p3">This application was built by IT Boy Creator, whose passion is to solve everyday problems through technology. If you have any ideas or feedback, please contact us.</p>
+            </div>
         </div>
     </main>
 

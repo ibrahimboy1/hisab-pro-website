@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark"> <head>
+<html lang="en" data-theme="dark">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hisab Pro</title>
+    <title>Privacy Policy - Hisab Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -10,14 +11,14 @@
         <a href="index.html" class="logo">Hisab Pro</a>
         <nav class="nav-menu" id="nav-menu">
             <ul class="nav-links">
-                <li><a href="index.html" data-key="nav_home" class="active">Home</a></li>
+                <li><a href="index.html" data-key="nav_home">Home</a></li>
                 <li><a href="features.html" data-key="nav_features">Features</a></li>
                 <li><a href="about.html" data-key="nav_about">About</a></li>
                 <li><a href="contact.html" data-key="nav_contact">Contact</a></li>
             </ul>
         </nav>
         <div class="nav-right">
-            <div class="language-switcher">
+             <div class="language-switcher">
                 <select id="language-select">
                     <option value="en">English</option>
                     <option value="hi">हिन्दी</option>
@@ -42,19 +43,20 @@
         </div>
     </header>
 
-    <main class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title animate-on-scroll" data-key="hero_title">Your Accounts Manager</h1>
-            <p class="hero-subtitle animate-on-scroll" data-key="hero_subtitle">
-                Hisab Pro is the easiest and best way to manage all your transactions. Now keep your accounts at your fingertips.
-            </p>
-        </div>
-        <div class="download-buttons animate-on-scroll">
-            <a href="https://github.com/ibrahimboy1/apk/releases/download/v1.0.0/hisab.pro.apk" class="btn btn-primary" data-key="download_android">Download for Android</a>
-            <a href="https://github.com/ibrahimboy1/apk/releases/download/v1.0.0/hisab.pro.apk" class="btn btn-secondary" data-key="all_downloads">All Downloads</a>
-        </div>
-        <div class="code-preview animate-on-scroll">
-            <img src="images/sa.jpg" alt="Hisab Pro App Preview">
+    <main class="page-container">
+        <h1 class="page-title animate-on-scroll" data-key="privacy_title">Privacy Policy</h1>
+        <div class="page-content">
+            <p class="animate-on-scroll"><strong>Last updated: August 26, 2025</strong></p>
+            <p class="animate-on-scroll" data-key="privacy_p1">Hisab Pro ('us', 'we', or 'our') values your privacy. This Privacy Policy explains how we collect, use, and protect your information.</p>
+            
+            <div class="animate-on-scroll">
+                <h2 data-key="privacy_h2_1">Information We Collect</h2>
+                <ul>
+                    <li data-key="privacy_li1"><strong>Personal Information:</strong> When you register, we collect your name and email address (via Firebase Authentication). This is necessary for your identity and account security.</li>
+                    <li data-key="privacy_li2"><strong>Financial Data:</strong> Any customer and transaction data you enter is saved on your local device (Room Database) and your personal Firebase account. This data is end-to-end encrypted, and we, the developers, cannot access it at all.</li>
+                    <li data-key="privacy_li3"><strong>App Permissions:</strong> The app requests certain permissions: RECORD_AUDIO for 'Smart Voice Input' and WRITE_EXTERNAL_STORAGE to save reports on your phone.</li>
+                </ul>
+            </div>
         </div>
     </main>
 
