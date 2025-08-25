@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
 
-    // Function to set theme
     const setTheme = (theme) => {
         htmlElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
@@ -21,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Load saved theme or system preference
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
@@ -56,7 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const savedLanguage = localStorage.getItem('language') || 'en';
-        languageSelect.value = savedLanguage;
+        if ([...languageSelect.options].some(option => option.value === savedLanguage)) {
+             languageSelect.value = savedLanguage;
+        }
         setLanguage(savedLanguage);
     }
 

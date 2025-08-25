@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark"> <head>
+<html lang="en" data-theme="dark">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hisab Pro</title>
@@ -8,15 +9,17 @@
 <body>
     <header class="header">
         <a href="index.html" class="logo">Hisab Pro</a>
-        <nav class="nav-menu" id="nav-menu">
-            <ul class="nav-links">
+
+        <nav class="nav-links">
+            <ul>
                 <li><a href="index.html" data-key="nav_home" class="active">Home</a></li>
                 <li><a href="features.html" data-key="nav_features">Features</a></li>
                 <li><a href="about.html" data-key="nav_about">About</a></li>
                 <li><a href="contact.html" data-key="nav_contact">Contact</a></li>
             </ul>
         </nav>
-        <div class="nav-right">
+
+        <div class="header-actions">
             <div class="language-switcher">
                 <select id="language-select">
                     <option value="en">English</option>
@@ -31,16 +34,25 @@
                     <option value="zh">中文</option>
                     <option value="ja">日本語</option>
                     <option value="it">Italiano</option>
-                    <option value="tr">Türkçe</option>
                 </select>
             </div>
             <button id="theme-toggle" class="theme-toggle" title="Toggle theme">☀️</button>
             <a href="https://github.com/ibrahimboy1/apk/releases/download/v1.0.0/hisab.pro.apk" class="download-btn-nav" data-key="download">Download</a>
         </div>
+
         <div class="hamburger-menu" id="hamburger">
             <div class="bar"></div><div class="bar"></div><div class="bar"></div>
         </div>
     </header>
+
+    <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+            <li><a href="index.html" data-key="nav_home" class="active">Home</a></li>
+            <li><a href="features.html" data-key="nav_features">Features</a></li>
+            <li><a href="about.html" data-key="nav_about">About</a></li>
+            <li><a href="contact.html" data-key="nav_contact">Contact</a></li>
+        </ul>
+    </nav>
 
     <main class="hero">
         <div class="hero-content">
