@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hisab Pro - Aapka Accounts Manager</title>
+    <style>
+        /* --- Google Font Import --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        /* --- General Styles & Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0C10; /* Dark Blue/Black Theme */
+            color: #E0E0E0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- Background Gradient (Blue Theme) --- */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: clamp(500px, 100vw, 800px);
+            height: clamp(500px, 100vw, 800px);
+            background: radial-gradient(circle, rgba(29, 78, 216, 0.25) 0%, rgba(59, 130, 246, 0.15) 40%, rgba(10, 12, 16, 0) 70%);
+            filter: blur(120px);
+            z-index: -1;
+        }
+
+        /* --- Header & Navigation Bar --- */
+        .header {
+            width: 100%;
+            padding: 20px clamp(1rem, 5vw, 3.125rem); /* Fluid padding */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            background: rgba(10, 12, 16, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            user-select: none;
+            z-index: 101;
+        }
+
+        .nav-links { display: flex; list-style: none; gap: 35px; }
+        .nav-links a {
+            color: #a0a0a0; text-decoration: none; font-size: 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+        .nav-links a:hover { color: #ffffff; transform: translateY(-2px); }
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .download-btn-nav {
+            background-color: #ffffff; color: #000000; border: none; padding: 10px 20px;
+            border-radius: 8px; font-weight: 600; cursor: pointer; text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .download-btn-nav:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); }
+        .hamburger-menu { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 101; }
+        .hamburger-menu .bar { width: 25px; height: 3px; background-color: white; border-radius: 5px; transition: all 0.3s ease-in-out; }
+
+        /* --- Hero Section --- */
+        .hero {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; min-height: 100vh;
+            padding: clamp(7.5rem, 15vh, 10rem) 1.25rem; /* Fluid top/bottom padding */
+        }
+        .hero-content {
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 10vw, 5rem);
+            font-weight: 800; letter-spacing: -2px; color: #FFFFFF;
+            line-height: 1.1;
+        }
+        .hero-title .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: revealWord 0.8s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+        }
+        .hero-title .word:nth-child(2) { animation-delay: 0.1s; }
+        .hero-title .word:nth-child(3) { animation-delay: 0.2s; }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            color: #b0b0b0; margin-top: 1.5rem; max-width: 600px; line-height: 1.6;
+            margin-left: auto; margin-right: auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .download-buttons { margin-top: 2.5rem; display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 15px 30px; font-size: 16px; font-weight: 600; border-radius: 8px;
+            text-decoration: none; cursor: pointer; border: 1px solid transparent;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary { background-color: #ffffff; color: #000000; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4); }
+        .btn-secondary { background-color: rgba(59, 130, 246, 0.1); color: #ffffff; border-color: rgba(59, 130, 246, 0.4); }
+        .btn-secondary:hover { background-color: rgba(59, 130, 246, 0.2); border-color: rgba(59, 130, 246, 0.6); transform: translateY(-3px); }
+        .android-icon { width: 20px; height: 20px; }
+
+        .code-preview {
+            width: 90%;
+            max-width: 900px;
+            margin: 3.75rem auto 0 auto;
+            border-radius: 12px;
+            border: 1px solid #333;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            background-color: #1a1a1a;
+        }
+        .code-preview img {
+            width: 100%;
+            display: block;
+        }
+        
+        /* --- SCROLL & LOAD ANIMATIONS --- */
+        .hidden-anim {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .hidden-anim.show-anim { opacity: 1; transform: translateY(0); }
+        
+        @keyframes revealWord {
+            from { opacity: 0; transform: translateY(30px) rotate(5deg); }
+            to { opacity: 1; transform: translateY(0) rotate(0deg); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- ACCESSIBILITY: REDUCED MOTION --- */
+        @media (prefers-reduced-motion: reduce) {
+            .hidden-anim, .hero-title .word, .hero-subtitle {
+                animation: fadeIn 1s forwards;
+                transition: none;
+            }
+            .btn:hover, .download-btn-nav:hover, .nav-links a:hover {
+                transform: none;
+            }
+            @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        }
+        
+        /* --- RESPONSIVE STYLES --- */
+        @media (max-width: 768px) {
+            .header { padding: 20px; }
+            .nav-menu {
+                position: fixed; top: 0; left: -100%; width: 100%; height: 100vh;
+                background-color: #0A0C10; display: flex; flex-direction: column;
+                justify-content: center; align-items: center; transition: left 0.4s ease-in-out;
+            }
+            .nav-menu.active { left: 0; }
+            .nav-links { flex-direction: column; text-align: center; gap: 0; }
+            .nav-links li { margin: 20px 0; }
+            .nav-links a { font-size: 24px; }
+            .nav-right { display: none; }
+            .hamburger-menu { display: flex; }
+            .hamburger-menu.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger-menu.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger-menu.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            .download-buttons { flex-direction: column; width: 100%; max-width: 300px; }
+            
+            .code-preview {
+                width: 95%;
+            }
+        }
+
+        /* For very small phones */
+        @media (max-width: 360px) {
+            .btn { padding: 12px 24px; font-size: 14px; }
+        }
+
+        /* --- DESKTOP PAR IMAGE SIZE FIX --- */
+        @media (min-width: 769px) {
+            .code-preview {
+                max-width: 420px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo" id="logo">Hisab Pro</div>
+        <nav class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Enterprise</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Docs</a></li>
+                <li><a href="#">Careers</a></li>
+            </ul>
+        </nav>
+        <div class="nav-right">
+            <a href="https://github.com/ibrahimboy1/apk/releases/download/v1.0.0/hisab.pro.apk" class="download-btn-nav">Download</a>
+        </div>
+        <div class="hamburger-menu" id="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+
+    <main class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="word">Aapka</span> 
+                <span class="word">Accounts</span> 
+                <span class="word">Manager</span>
+            </h1>
+            <p class="hero-subtitle">
+                Hisab Pro aapke tamam transactions ko manage karne ka sabse aasan aur behtareen zariya hai. Ab hisab kitab rakhein apni ungliyon par.
+            </p>
+        </div>
+        
+        <div class="download-buttons hidden-anim" id="download">
+            <a href="https://github.com/ibrahimboy1/apk/releases/download/v1.0.0/hisab.pro.apk" class="btn btn-primary">
+                <svg class="android-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4 14.0426C4 15.0106 4.79787 15.8085 5.76596 15.8085H8.38298V19.4468C8.38298 20.4149 9.18085 21.2128 10.149 21.2128C11.117 21.2128 11.9149 20.4149 11.9149 19.4468V15.8085H13.8298V19.4468C13.8298 20.4149 14.6277 21.2128 15.5957 21.2128C16.5638 21.2128 17.3617 20.4149 17.3617 19.4468V15.8085H20.234C21.2021 15.8085 22 15.0106 22 14.0426V9.21277H4V14.0426Z"/><path d="M20 3H6C4.89543 3 4 3.89543 4 5V8H22V5C22 3.89543 21.1046 3 20 3Z"/><path d="M7.5 5.5C7.77614 5.5 8 5.72386 8 6C8 6.27614 7.77614 6.5 7.5 6.5C7.22386 6.5 7 6.27614 7 6C7 5.72386 7.22386 5.5 7.5 5.5Z" fill="#fff"/><path d="M18.5 5.5C18.7761 5.5 19 5.72386 19 6C19 6.27614 18.7761 6.5 18.5 6.5C18.2239 6.5 18 6.27614 18 6C18 5.72386 18.2239 5.5 18.5 5.5Z" fill="#fff"/></svg>
+                Download for Android
+            </a>
+            <a href="https://github.com/ibrahimboy1/apk/releases/download/v1.0.0/hisab.pro.apk" class="btn btn-secondary">All Downloads</a>
+        </div>
+        
+        <div class="code-preview hidden-anim">
+            <img src="images/sa.jpg" alt="Hisab Pro App Preview">
+        </div>
+    </main>
+
+    <script>
+        // Logo Animation
+        const logo = document.getElementById('logo');
+        logo.addEventListener('click', () => {
+            logo.classList.add('animate');
+            setTimeout(() => { logo.classList.remove('animate'); }, 500);
+        });
+
+        // Responsive Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Scroll Animation Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show-anim');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden-anim');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+
+</body>
+</html>
